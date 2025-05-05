@@ -3,8 +3,8 @@
     --system-gray: #86868b;
     --system-gray-light: #e5e5e5;
     --system-gray-dark: #2c2c2c;
-    --system-blue: #dcacff;
-    --system-blue-light: #a329ff;
+    --system-purple: #dcacff;
+    --system-purple-light: #a329ff;
     --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.03);
     --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.05);
     --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.1);
@@ -63,7 +63,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: var(--system-blue);
+    color: var(--system-purple-light);
 }
 
 /* Hero Section */
@@ -91,7 +91,7 @@ nav {
 
 .cta-button {
     display: inline-block;
-    background-color: var(--system-blue);
+    background-color: var(--system-purple);
     color: white;
     padding: 10px 20px;
     border-radius: 20px;
@@ -142,7 +142,7 @@ nav {
 .project-card {
     background-color: white;
     border-radius: 12px;
-    box-shadow: 0 4px 8px var(--bento-shadow);
+    box-shadow: 0 4px 8px var(--system-white);
     overflow: hidden;
     transition: transform 0.3s ease;
 }
