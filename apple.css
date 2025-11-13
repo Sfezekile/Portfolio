@@ -1,10 +1,10 @@
 :root {
-    --system-white: #f4e5ff;
+    --system-white: #f6f6fa;
     --system-gray: #86868b;
     --system-gray-light: #e5e5e5;
     --system-gray-dark: #2c2c2c;
-    --system-purple: #dcacff;
-    --system-purple-light: #a329ff;
+    --system-purple: #5729ff;
+    --system-purple-light: #b9acff;
     --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.03);
     --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.05);
     --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.1);
@@ -25,9 +25,15 @@ body {
 }
 
 .container {
-    max-width: 1700px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 22px;
+}
+.project-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 22px;
+    z-index: 9;
 }
 
 /* Header */
@@ -68,6 +74,7 @@ nav {
 
 /* Hero Section */
 .hero {
+    display: block;
     padding: 120px 0 80px;
     text-align: center;
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 80%);
@@ -87,8 +94,35 @@ nav {
     margin: 0 auto 40px;
 }
 
+.text {
+    z-index: 2;
+    position: relative;
+}
+/*
+.color-block {
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    filter: blur(150px);
+    background: linear-gradient(90deg, #b4aeff, #8d80ff, #6a4dff, #6a4dff);
+    transform-origin: center center;
+    transform: translate(-50%, -50%) rotate(0deg) translateX(120px) rotate(0deg);
+    animation: orbit 12s linear infinite;
+    z-index: 1;
+}
 
-
+@keyframes orbit {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(220px) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(220px) rotate(-360deg);
+    }
+}
+*/
 .cta-button {
     display: inline-block;
     background-color: var(--system-purple);
@@ -135,7 +169,7 @@ nav {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
     gap: 30px;
 }
 
