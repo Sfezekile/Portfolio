@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="apple.css">
+    <title>Sfezelike | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --system-white: #ffffff;
+            --system-gray-light: #f5f7fa;
+            --system-gray: #6b7280;
+            --system-gray-dark: #374151;
+            --system-purple-light: #0245A3;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        body {
+            background-color: #f9fafb;
+            scroll-behavior: smooth;
+        }
+        
+        .project-about {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        .slideshow-container {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px 18px 0 0;
+        }
+
+        .slideshow {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 140%;
+            background-color: #f5f7fa;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slideshow-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: white;
+            width: 16px;
+            border-radius: 4px;
+        }
+
+        .references {
+            margin-top: 60px;
+            padding: 20px 0;
+            background-color: #ffffff;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reference-bar {
+            margin-top: 40px;
+            margin: 0 auto;
+            padding: 0 200px;
+            width: 100%;
+            height: 10vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            
+            gap: 60vh;
+        }
+
+        .item1 img,
+        .item2 img {
+            width: 10vh;
+            height: 10vh;
+            transition: transform 0.3s ease;
+        }
+        
+        .item1 img:hover,
+        .item2 img:hover {
+            transform: scale(1.05);
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background-color: var(--system-purple-light);
+            color: var(--system-gray-light);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Case Study Styles */
+        .case-study {
+            /*padding: 80px 0;*/
+            background-color: #f9fafb;
+        }
+
+        .container {
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .case-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        .contact-container {
+            max-width: 1900px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #1a202c;
+            font-family: 'Playfair Display', serif;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .case-study-item {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .case-study-item:nth-child(1) { animation-delay: 0.1s; }
+        .case-study-item:nth-child(2) { animation-delay: 0.2s; }
+        .case-study-item:nth-child(3) { animation-delay: 0.3s; }
+        .case-study-item:nth-child(4) { animation-delay: 0.4s; }
+        .case-study-item:nth-child(5) { animation-delay: 0.5s; }
+
+        .case-study-item.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .case-study-item.top {
+            flex-direction: column;
+        }
+
+        .case-text,
+        .case-text2 {
+            flex: 1;
+        }
+
+        
+
+        .case-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2d3748;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .case-text p,
+        .case-text2 p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .case-text2 {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .case-image {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            /*box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);*/
+            position: relative;
+        }
+        
+        .case-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.03);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .case-image:hover::before {
+            opacity: 1;
+        }
+
+        .case-image img {
+            width: 45vh;
+            height: 58vh;
+            display: block;
+            transition: transform 0.5s ease;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+            animation-delay: 0.6s;
+        }
+        
+        .case-image img.loaded {
+            opacity: 1;
+        }
+
+        .case-image.top img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .case-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .project-context {
+            margin-bottom: 20px;
+        }
+
+        .context-tag, .skill-tag {
+            background-color: #e2e8f0;
+            color: #2d3748;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .skill-tag {
+            background-color: var(--system-purple-light);
+            color: var(--system-gray-light);
+        }
+
+        .design-deliverables, .design-skills {
+            background-color: rgba(220, 172, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--system-purple-light);
+        }
+
+        .design-deliverables h4, .design-skills h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .design-deliverables ul, .design-skills ul {
+            margin-left: 20px;
+        }
+
+        .design-deliverables li, .design-skills li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .skills-grid {
+            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-category {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-category h5 {
+            color: var(--system-purple-light);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .skill-category ul {
+            margin-left: 15px;
+        }
+
+        .skill-category li {
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--system-gray-dark);
+            color: var(--system-gray-light);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--system-gray-light);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: var(--system-gray);
+        }
+        
+        /* Focus styles for accessibility */
+        a:focus-visible,
+        .tag:focus-visible {
+            outline: 2px solid #4a90e2;
+            outline-offset: 2px;
+        }
+        
+        /* Loading animation for images */
+        .case-image img:not([src]) {
+            background-color: #f0f0f0;
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0.6;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+
+            .case-study-item,
+            .case-study-item.reverse {
+                flex-direction: column;
+            }
+
+            .case-text,
+            .case-image {
+                width: 100%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .reference-bar {
+                padding: 0 20px;
+                gap: 30vh;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .reference-bar {
+                flex-direction: column;
+                gap: 20px;
+                height: auto;
+                padding: 20px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">S'fezekile Chandu</div>
+                <div class="nav-links">
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="project-about">
+        <div class="slideshow-container">
+            <div class="slideshow">
+                <div class="slide active" style="background-image: url('Eduvos-logo.jpg')"></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="case-study">
+        <div class="case-container">
+            <section class="case-study">
+                <div class="container">
+                    <h2 class="section-title">System Design Case Study</h2>
+
+                    <!-- Project Context -->
+                    <div class="case-study-item">
+                        <div class="case-text">
+                            <h3>Project Overview & Design Challenge</h3>
+                            <div class="project-context">
+                                <span class="skill-tag">Academic System Design Project</span>
+                                <span class="skill-tag">UML Modeling</span>
+                                <span class="skill-tag">Software Architecture</span>
+                            </div>
+
+                            <p><strong>Design Challenge:</strong> Create a comprehensive system design for my institute's parking garage management system to address inefficient space usage, manual processes, and congestion issues.</p>
+
+                            <p><strong>My Role:</strong> System Designer responsible for creating UML diagrams, defining system architecture, and documenting the complete software design specification.</p>
+
+                            <div class="design-deliverables">
+                                <h4>Design Deliverables:</h4>
+                                <ul>
+                                    <li>Use Case Analysis & Requirements Specification</li>
+                                    <li>Activity Diagrams for workflow modeling</li>
+                                    <li>Class Diagrams for system architecture</li>
+                                    <li>Communication Diagrams for component interaction</li>
+                                    <li>State Machine Diagrams for behavioral modeling</li>
+                                    <li>Methodology Selection & Justification</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Use Case Analysis -->
+                    <div class="case-study-item reverse">
+                        <div class="case-text">
+                            <h3>Requirements Analysis & Use Case Modeling</h3>
+
+                            <h4>Key System Requirements Identified:</h4>
+                            <ul>
+                                <li>Automated client registration and validation</li>
+                                <li>Real-time parking space monitoring via sensors</li>
+                                <li>License plate recognition for access control</li>
+                                <li>Flexible payment processing (registered & unregistered users)</li>
+                                <li>Overstay detection and additional billing</li>
+                                <li>Automated receipt generation and email notifications</li>
+                            </ul>
+
+                            <h4>Actors & Interactions:</h4>
+                            <p>Designed four primary actors (Client, Admin System, Parking Sensor, License Plate Reader) with clearly defined responsibilities and interaction patterns.</p>
+
+                            <div class="design-skills">
+                                <span class="skill-tag">Requirements Analysis</span>
+                                <span class="skill-tag">Use Case Modeling</span>
+                                <span class="skill-tag">Stakeholder Analysis</span>
+                            </div>
+                        </div>
+                        <div class="case-image">
+                            <img src="Use Case Diagram.drawio.png" alt="Use Case Diagram" loading="lazy">
+                        </div>
+                    </div>
+                
+                    <!-- System Architecture -->
+                    <div class="case-study-item">
+                        <div class="case-text">
+                            <h3>System Architecture & Class Design</h3>
+
+                            <h4>Core Components Designed:</h4>
+                            <ul>
+                                <li><strong>Client Management:</strong> Registration, profile updates, reservation handling</li>
+                                <li><strong>Booking System:</strong> Reservation tracking, fee calculation, status management</li>
+                                <li><strong>Payment Processing:</strong> Multiple payment methods, authorization, receipt generation</li>
+                                <li><strong>Parking Infrastructure:</strong> Space monitoring, sensor integration, real-time updates</li>
+                                <li><strong>Access Control:</strong> License plate validation, gate control, security enforcement</li>
+                            </ul>
+
+                            <h4>Architectural Decisions:</h4>
+                            <p>Designed a modular architecture with clear separation of concerns, allowing independent development and testing of system components.</p>
+
+                            <div class="design-skills">
+                                <span class="skill-tag">Class Design</span>
+                                <span class="skill-tag">System Architecture</span>
+                                <span class="skill-tag">Modular Design</span>
+                            </div>
+                        </div>
+                        <div class="case-image">
+                            <img src="Class Diagram.drawio.png" alt="Class Diagram" loading="lazy">
+                        </div>
+                    </div>
+                
+                    <!-- Workflow Design -->
+                    <div class="case-study-item reverse">
+                        <div class="case-text">
+                            <h3>Process Modeling & Workflow Design</h3>
+
+                            <h4>Key Workflows Designed:</h4>
+                            <ul>
+                                <li><strong>Registration & Validation:</strong> Client onboarding with duplicate detection and email verification</li>
+                                <li><strong>Reservation Process:</strong> Space availability checking, booking confirmation, payment processing</li>
+                                <li><strong>Access Control Flow:</strong> License plate scanning, validation, gate control</li>
+                                <li><strong>Overstay Management:</strong> Additional fee detection, payment enforcement, access control</li>
+                            </ul>
+
+                            <h4>Error Handling & Edge Cases:</h4>
+                            <p>Designed comprehensive error handling for invalid registrations, payment failures, sensor malfunctions, and system exceptions.</p>
+
+                            <div class="design-skills">
+                                <span class="skill-tag">Activity Diagrams</span>
+                                <span class="skill-tag">Process Modeling</span>
+                                <span class="skill-tag">Error Handling</span>
+                            </div>
+                        </div>
+                        <div class="case-image">
+                            <img src="Activity Diagram.drawio.png" alt="Activity Diagram" loading="lazy">
+                        </div>
+                    </div>
+                
+                    <!-- Methodology & Implementation Strategy -->
+                    <div class="case-study-item">
+                        <div class="case-text">
+                            <h3>Development Methodology & Implementation Strategy</h3>
+
+                            <h4>Methodology Evaluation:</h4>
+                            <p>Analyzed five software development methodologies (Waterfall, RAD, Spiral, V-Model, Agile) and selected Agile/Scrum as the optimal approach.</p>
+
+                            <h4>Selected Approach: Agile/Scrum</h4>
+                            <ul>
+                                <li><strong>Adaptability:</strong> Accommodates changing requirements like new payment methods</li>
+                                <li><strong>Incremental Delivery:</strong> Phased feature rollout reduces risk</li>
+                                <li><strong>Stakeholder Engagement:</strong> Regular feedback ensures alignment with business needs</li>
+                                <li><strong>Scalability:</strong> Supports future system expansion and feature additions</li>
+                            </ul>
+
+                            <div class="design-skills">
+                                <span class="skill-tag">Methodology Selection</span>
+                                <span class="skill-tag">Agile Principles</span>
+                                <span class="skill-tag">Project Planning</span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Technical Design Skills -->
+                    <div class="case-study-item top">
+                        <div class="case-text bottom">
+                            <h3>Technical Design Skills Demonstrated</h3>
+
+                            <div class="skills-grid">
+                                <div class="skill-category">
+                                    <h5>UML Modeling</h5>
+                                    <ul>
+                                        <li>Use Case Diagrams</li>
+                                        <li>Activity Diagrams</li>
+                                        <li>Class Diagrams</li>
+                                        <li>Communication Diagrams</li>
+                                        <li>State Machine Diagrams</li>
+                                    </ul>
+                                </div>
+
+                                <div class="skill-category">
+                                    <h5>System Analysis</h5>
+                                    <ul>
+                                        <li>Requirements Gathering</li>
+                                        <li>Stakeholder Analysis</li>
+                                        <li>Process Modeling</li>
+                                        <li>Edge Case Identification</li>
+                                    </ul>
+                                </div>
+
+                                <div class="skill-category">
+                                    <h5>Architectural Design</h5>
+                                    <ul>
+                                        <li>Component Design</li>
+                                        <li>Interface Definition</li>
+                                        <li>Data Flow Modeling</li>
+                                        <li>System Integration</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>    
+
+    <section class="references">
+        <div class="reference-bar">
+            <div class="item1">
+                <img src="Eduvos logo.png" alt="Eduvos logo" loading="lazy">
+            </div>
+            <div class="item2">
+                <img src="draw-io-logo-png_seeklogo-451991.png" alt="Draw.io logo" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="contact-container">
+            <div class="footer-links">
+                <a href="mailto:sfezekilekhumalo@gmail.com">Email</a>
+                <a href="https://github.com/Sfezekile">GitHub</a>
+                <a href="www.linkedin.com/in/sfezekile-khumalo-0717082a0">LinkedIn</a>
+                <a href="https://twitter.com/alexcarter">Instagram</a>
+            </div>
+            <p class="copyright">© 2023 Sfezekile Chandu. All rights reserved.</p>
+        </div>
+    </footer>
+
+    
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Image lazy loading enhancement
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            
+            images.forEach(img => {
+                if (img.complete) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', function() {
+                        this.classList.add('loaded');
+                    });
+                    
+                    img.addEventListener('error', function() {
+                        // Handle broken images gracefully
+                        console.log('Image failed to load:', this.src);
+                    });
+                }
+            });
+            
+            // Initialize ScrollReveal if available
+            if (typeof ScrollReveal !== 'undefined') {
+                ScrollReveal().reveal('.case-study-item', {
+                    delay: 200,
+                    distance: '20px',
+                    origin: 'bottom',
+                    easing: 'ease-out',
+                    interval: 100
+                });
+            }
+        });
+        
+        // Add focus management for better keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+        
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+    </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
